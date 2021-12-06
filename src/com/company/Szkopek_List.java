@@ -13,7 +13,7 @@ public class Szkopek_List<T> implements java.util.List<T>
 {
     private Object tablica[];
     private int size = 0;
-    private static int capacity = 200;
+    private static int capacity = 20;
 
     public Szkopek_List()
     {
@@ -49,8 +49,9 @@ public class Szkopek_List<T> implements java.util.List<T>
     }
 
     @Override
-    public Object[] toArray() {
-        return new Object[0];
+    public Object[] toArray()
+    {
+        return tablica;
     }
 
     @Override
@@ -63,6 +64,7 @@ public class Szkopek_List<T> implements java.util.List<T>
     {
         if(size==capacity)
             return false;
+        //while()
         tablica[size]=t;
         size++;
         return true;
@@ -71,13 +73,31 @@ public class Szkopek_List<T> implements java.util.List<T>
     @Override
     public boolean remove(Object o)
     {
+        int index = -1;
         for(int i=0; i<size; i++ )
         {
             if(tablica[i]==o)
             {
                 tablica[i]=null;
-                return true;
+                index=i;
+                break;
             }
+        }
+
+        if(index==0)
+        {
+            tablica[0]=null;
+            size--;
+            return true;
+        }
+        else if(index > 0)
+        {
+            Object[] copyArray = new Object[tablica.length];
+            System.arraycopy(tablica, 0, copyArray, 0, index);
+            System.arraycopy(tablica, index + 1, copyArray, index, tablica.length - index - 1);
+            size--;
+            //System.out.println(Arrays.toString(tablica)); tablica = copyarray
+            return true;
         }
         return false;
     }
@@ -134,7 +154,25 @@ public class Szkopek_List<T> implements java.util.List<T>
     @Override
     public T remove(int index)
     {
-        return (T)tablica[index];
+        if((index < 0) || (index > capacity))
+            throw new IndexOutOfBoundsException();
+
+        if(index==0)
+        {
+            tablica[0]=null;
+            size--;
+            return (T)tablica[index];
+        }
+        else if(index > 0)
+        {
+            Object[] copyArray = new Object[tablica.length];
+            System.arraycopy(tablica, 0, copyArray, 0, index);
+            System.arraycopy(tablica, index + 1, copyArray, index, tablica.length - index - 1);
+            //tablica=copyArray;
+            //size--;
+            return (T)copyArray[index];
+        }
+        return null;
     }
 
     @Override
