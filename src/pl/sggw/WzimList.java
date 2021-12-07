@@ -84,22 +84,21 @@ public class WzimList<T> implements java.util.List<T>
             }
         }
 
-        if(index==0)
+        if(index == -1)
+            return false;
+
+        Object[] copyArray = new Object[tablica.length];
+        for (int i = 0, k = 0; i < copyArray.length - 1 ; i++)
         {
-            tablica[0]=null;
-            size--;
-            return true;
+            if (i == index)
+                continue;
+            else
+                copyArray[k++] = tablica[i];
         }
-        else if(index > 0)
-        {
-            Object[] copyArray = new Object[tablica.length];
-            System.arraycopy(tablica, 0, copyArray, 0, index);
-            System.arraycopy(tablica, index + 1, copyArray, index, tablica.length - index - 1);
-            size--;
-            //System.out.println(Arrays.toString(tablica)); tablica = copyarray
-            return true;
-        }
-        return false;
+        copyArray[tablica.length-1] = null;
+        size--;
+        tablica=copyArray;
+        return true;
     }
 
     @Override
@@ -135,13 +134,17 @@ public class WzimList<T> implements java.util.List<T>
     }
 
     @Override
-    public T get(int index) {
+    public T get(int index)
+    {
         return (T)tablica[index];
     }
 
     @Override
-    public T set(int index, T element) {
-        return null;
+    public T set(int index, T element)
+    {
+        String poprzednie =  (String)tablica[index];
+        tablica[index]=element;
+        return (T)poprzednie;
     }
 
     @Override
@@ -157,27 +160,40 @@ public class WzimList<T> implements java.util.List<T>
         if((index < 0) || (index > capacity))
             throw new IndexOutOfBoundsException();
 
-        if(index==0)
+        T result= (T)tablica[index];
+        Object[] copyArray = new Object[tablica.length];
+        for (int i = 0, k = 0; i < copyArray.length - 1 ; i++)
         {
-            tablica[0]=null;
-            size--;
-            return (T)tablica[index];
+            if (i == index)
+                continue;
+            else
+                copyArray[k++] = tablica[i];
         }
-        else if(index > 0)
-        {
-            Object[] copyArray = new Object[tablica.length];
-            System.arraycopy(tablica, 0, copyArray, 0, index);
-            System.arraycopy(tablica, index + 1, copyArray, index, tablica.length - index - 1);
-            //tablica=copyArray;
-            //size--;
-            return (T)copyArray[index];
-        }
-        return null;
+        copyArray[tablica.length-1] = null;
+        size--;
+        tablica=copyArray;
+        return result;
     }
 
     @Override
-    public int indexOf(Object o) {
-        return 0;
+    public int indexOf(Object o)
+    {
+        int index = -1;
+        for(int i=0; i<size; i++ )
+        {
+            if(tablica[i]==o)
+            {
+                index=i;
+                break;
+            }
+        }
+        if(index == -1)
+            return index;
+
+        if(tablica[index]==null)
+            throw new NullPointerException();
+
+        return index;
     }
 
     @Override

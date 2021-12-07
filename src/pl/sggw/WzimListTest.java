@@ -3,6 +3,7 @@ package pl.sggw;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 class WzimListTest {
@@ -30,12 +31,32 @@ class WzimListTest {
         List<String> lista = new WzimList<String>();
         lista.add("Ala");
 
-        boolean result1 = lista.contains("Ala");
-        boolean result2 = lista.contains("Test");
-        String result_str1 = String.valueOf(result1);
-        String result_str2 = String.valueOf(result2);
+        Assertions.assertEquals(true, lista.contains("Ala"));
+        Assertions.assertEquals(false, lista.contains("Test"));
+    }
 
-        Assertions.assertEquals("true",result_str1);
-        Assertions.assertEquals("false",result_str2);
+    @Test
+    public void shouldWork4()
+    {
+        List<String> lista = new WzimList<String>();
+        lista.add("Bartek");
+        lista.add("Tomek");
+        lista.add("Ola");
+        lista.add("Rafał");
+
+        Assertions.assertEquals(true, lista.remove("Tomek"));
+        Assertions.assertEquals(false, lista.remove("Bożena"));
+    }
+
+    @Test
+    public void shouldWork5()
+    {
+        List<String> lista = new WzimList<String>();
+        lista.add("Bartek");
+        lista.add("Tomek");
+        lista.add("Ala");
+        lista.add("Rafał");
+
+        Assertions.assertEquals("Ala",  lista.set(2,"Monika"));
     }
 }

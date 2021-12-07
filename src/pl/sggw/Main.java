@@ -42,13 +42,27 @@ public class Main {
         System.out.println("Po usunieciu jednego elementu po obiekcie");
         lista.remove("Tomek");
         System.out.println(Arrays.toString(lista.toArray()));
+        System.out.println(lista.size());
 
         System.out.println("Po usunieciu jednego elementu po indeksie");
-        lista.remove(0);
+        System.out.println(lista.remove(0));
         System.out.println(Arrays.toString(lista.toArray()));
+        System.out.println(lista.size());
 
-        //System.out.println("Po usunieciu jednego elementu po indeksie");
-        //System.out.println(lista.remove(2));
-        //System.out.println(Arrays.toString(lista.toArray()));
+        System.out.println("Po usunieciu jednego elementu po indeksie");
+        System.out.println(lista.remove(1));
+        System.out.println(Arrays.toString(lista.toArray()));
+        System.out.println(lista.size());
+
+        lista.add("Tomek");
+        lista.add("Rafał");
+        System.out.println(Arrays.toString(lista.toArray()));
+        System.out.println(lista.size());
+        System.out.println(lista.indexOf("Tomek"));
+        System.out.println(lista.indexOf("Bożena"));
+
+        System.out.println("Uzycie metody set");
+        System.out.println(lista.set(0,"Monika"));
+        System.out.println(Arrays.toString(lista.toArray()));
     }
 }
