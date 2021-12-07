@@ -1,17 +1,15 @@
-package com.company;
+package pl.sggw;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class Szkopek_ListTest {
+class WzimListTest {
     @Test
     public void shouldWork1()
     {
-        List<String> lista = new Szkopek_List<String>();
+        List<String> lista = new WzimList<String>();
         boolean result = lista.isEmpty();
         String result_str = String.valueOf(result);
         Assertions.assertEquals("true",result_str);
@@ -20,7 +18,7 @@ class Szkopek_ListTest {
     @Test
     public void shouldWork2()
     {
-        List<String> lista = new Szkopek_List<String>();
+        List<String> lista = new WzimList<String>();
         lista.add("Ala");
         String result = lista.get(0);
         Assertions.assertEquals("Ala",result);
@@ -29,7 +27,7 @@ class Szkopek_ListTest {
     @Test
     public void shouldWork3()
     {
-        List<String> lista = new Szkopek_List<String>();
+        List<String> lista = new WzimList<String>();
         lista.add("Ala");
 
         boolean result1 = lista.contains("Ala");

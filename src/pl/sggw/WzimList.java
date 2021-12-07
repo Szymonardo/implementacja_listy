@@ -1,4 +1,4 @@
-package com.company;
+package pl.sggw;
 
 import java.lang.reflect.Array;
 import java.util.Collection;
@@ -9,13 +9,13 @@ import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 
-public class Szkopek_List<T> implements java.util.List<T>
+public class WzimList<T> implements java.util.List<T>
 {
     private Object tablica[];
     private int size = 0;
     private static int capacity = 20;
 
-    public Szkopek_List()
+    public WzimList()
     {
         tablica = new Object[capacity];
     }

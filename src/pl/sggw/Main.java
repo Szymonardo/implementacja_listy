@@ -1,4 +1,4 @@
-package com.company;
+package pl.sggw;
 
 import java.util.*;
 
@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args)
     {
-        List<String> lista = new Szkopek_List<String>();
+        List<String> lista = new WzimList<>();
 
         System.out.println(lista.isEmpty());
 
